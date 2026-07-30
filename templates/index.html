@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Health Risk Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+<!-- Hero Header Section -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <h1>Student Health Risk Prediction</h1>
+    <p>Machine Learning Based Student Lifestyle Health Assessment</p>
+    <div style="margin-top: 20px;">
+      <a href="/dashboard" class="dashboard-link">View Your Health Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="form-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <h2>Get Your Health Risk Prediction</h2>
+    </div>
+    <p class="form-subtitle">Fill in your details below to get an ML-powered assessment of your health condition</p>
+
+    <form action="/predict" method="POST" id="healthForm">
+
+      <div class="section-title">Health Metrics</div>
+      <div class="grid">
+        <div class="input-group">
+          <label>Sleep Duration</label>
+          <input type="range" min="3" max="12" step="0.1" value="0" name="sleep_duration" id="sleep_duration" oninput="sleepValue.value=this.value">
+          <span class="range-value"><output id="sleepValue">0</output> hours</span>
+        </div>
+
+        <div class="input-group">
+          <label>Heart Rate</label>
+          <input type="range" min="40" max="150" value="0" name="heart_rate" id="heart_rate" oninput="heartValue.value=this.value">
+          <span class="range-value"><output id="heartValue">0</output> bpm</span>
+        </div>
+
+        <div class="input-group">
+          <label>BMI</label>
+          <input type="range" min="10" max="45" step="0.1" value="0" name="bmi" id="bmi" oninput="bmiValue.value=this.value">
+          <span class="range-value"><output id="bmiValue">0</output></span>
+        </div>
+
+        <div class="input-group">
+          <label>Calorie Expenditure</label>
+          <input type="range" min="500" max="5000" value="0" name="calorie_expenditure" id="calorie_expenditure" oninput="calValue.value=this.value">
+          <span class="range-value"><output id="calValue">0</output> kcal</span>
+        </div>
+
+        <div class="input-group">
+          <label>Step Count</label>
+          <input type="range" min="0" max="30000" value="0" name="step_count" id="step_count" oninput="stepValue.value=this.value">
+          <span class="range-value"><output id="stepValue">0</output> steps</span>
+        </div>
+
+        <div class="input-group">
+          <label>Exercise Duration</label>
+          <input type="range" min="0" max="180" value="0" name="exercise_duration" id="exercise_duration" oninput="exerciseValue.value=this.value">
+          <span class="range-value"><output id="exerciseValue">0</output> minutes</span>
+        </div>
+
+        <div class="input-group">
+          <label>Water Intake</label>
+          <input type="range" min="0" max="5" step="0.1" value="0" name="water_intake" id="water_intake" oninput="waterValue.value=this.value">
+          <span class="range-value"><output id="waterValue">0</output> litres</span>
+        </div>
+      </div>
+
+      <div class="section-title">Lifestyle & Demographics</div>
+      <div class="grid">
+        <div class="input-group">
+          <label>Diet Type</label>
+          <select name="diet_type" id="diet_type" required>
+            <option value="" selected disabled>Select diet type</option>
+            <option value="veg">Vegetarian</option>
+            <option value="non-veg">Non Vegetarian</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Stress Level</label>
+          <select name="stress_level" id="stress_level" required>
+            <option value="" selected disabled>Select stress level</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Sleep Quality</label>
+          <select name="sleep_quality" id="sleep_quality" required>
+            <option value="" selected disabled>Select sleep quality</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Physical Activity</label>
+          <select name="physical_activity_level" id="physical_activity_level" required>
+            <option value="" selected disabled>Select activity level</option>
+            <option value="sedentary">Sedentary</option>
+            <option value="moderate">Moderate</option>
+            <option value="active">Active</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Smoking / Alcohol</label>
+          <select name="smoking_alcohol" id="smoking_alcohol" required>
+            <option value="" selected disabled>Select usage</option>
+            <option value="no">No</option>
+            <option value="occasional">Occasional</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Gender</label>
+          <select name="gender" id="gender" required>
+            <option value="" selected disabled>Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Predict Health Condition</button>
+    </form>
+
+    {% if prediction %}
+    <div id="resultBox" class="result {% if prediction == 'fit' %}result-green{% elif prediction == 'at-risk' %}result-yellow{% else %}result-red{% endif %}">
+      <h2>{{ prediction.upper() }}</h2>
+      <p>
+        {% if prediction == 'fit' %}Healthy lifestyle detected. Continue maintaining good habits.
+        {% elif prediction == 'at-risk' %}Some lifestyle factors may require improvement.
+        {% else %}Health risk detected. Consider lifestyle improvements.{% endif %}
+      </p>
+    </div>
+
+    {% if recommendations %}
+    <div class="recommendations-card">
+      <h3>Recommendations</h3>
+      <ul>
+        {% for tip in recommendations %}
+        <li>{{ tip }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  // Validate all selects before submit
+  document.getElementById('healthForm').addEventListener('submit', function(e) {
+    var selects = document.querySelectorAll('select');
+    for (var i = 0; i < selects.length; i++) {
+      if (!selects[i].value) {
+        alert('Please fill in all fields before predicting.');
+        selects[i].focus();
+        e.preventDefault();
+        return;
+      }
+    }
+    sessionStorage.setItem('scrollPos', window.scrollY);
+  });
+
+  window.addEventListener('load', function() {
+    var scrollPos = sessionStorage.getItem('scrollPos');
+    if (scrollPos !== null) {
+      window.scrollTo(0, parseInt(scrollPos));
+      sessionStorage.removeItem('scrollPos');
+    }
+
+    var resultBox = document.getElementById('resultBox');
+    if (resultBox) {
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>Student Health Risk Prediction</span>
+    </div>
+    <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
