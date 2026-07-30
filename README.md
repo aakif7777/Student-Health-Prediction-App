@@ -1,32 +1,32 @@
 # Student Health Risk Prediction System
 
-A Machine Learning based Flask web application that predicts student health conditions.
+A Machine Learning based web application developed to predict student health conditions using lifestyle and physiological factors.
 
-## Prediction Classes
+## Project Objective
+
+The system predicts student health risk levels into three categories:
 
 - Fit
 - At-Risk
 - Unhealthy
 
+The prediction is performed using a trained Machine Learning model deployed through a Flask web application.
+
 ## Machine Learning Model
 
 Final Model:
+
 XGBoost Classifier
 
+Evaluation Metric:
+
+Balanced Accuracy
+
 Performance:
+
 Balanced Accuracy: 0.94947
 
-## Technologies Used
-
-- Python
-- Flask
-- XGBoost
-- Pandas
-- NumPy
-- Scikit-learn
-- Joblib
-
-## Features
+## Input Features
 
 - Sleep Duration
 - Heart Rate
@@ -41,6 +41,23 @@ Balanced Accuracy: 0.94947
 - Physical Activity Level
 - Smoking and Alcohol
 - Gender
+
+## Technologies Used
+
+- Python
+- Flask
+- XGBoost
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+
+## Application Features
+
+- Machine Learning prediction  
+- Flask web interface  
+- Real-time health risk classification  
+- User-friendly input form  
 
 ## Author
 
