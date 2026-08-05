@@ -75,13 +75,13 @@ The prediction is generated using a trained XGBoost model based on multiple heal
 ## Project Structure
 
 Student-Health-Risk-Prediction/
-
- app.py
- requirements.txt
- README.md
- model/
- templates/
- static/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── model/
+├── templates/
+├── static/
 
 
 ---
