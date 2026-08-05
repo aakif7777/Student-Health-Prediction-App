@@ -1,30 +1,30 @@
 # Student Health Risk Prediction System
 
-A Machine Learning based web application developed to predict student health conditions using lifestyle and physiological factors.
+A Machine Learning-based web application developed to predict student health conditions using lifestyle, behavioural, and physiological factors. The system is powered by an XGBoost model and provides real-time health risk predictions through a Flask web application.
+
+---
 
 ## Project Objective
 
-The system predicts student health risk levels into three categories:
+The system predicts a student's health condition into one of the following categories:
 
 - Fit
 - At-Risk
 - Unhealthy
 
-The prediction is performed using a trained Machine Learning model deployed through a Flask web application.
+The prediction is generated using a trained XGBoost model based on multiple health-related features.
+
+---
 
 ## Machine Learning Model
 
-Final Model:
+**Final Model:** XGBoost Classifier
 
-XGBoost Classifier
+**Evaluation Metric:** Balanced Accuracy
 
-Evaluation Metric:
+**Final Kaggle Score:** **0.94948**
 
-Balanced Accuracy
-
-Performance:
-
-Balanced Accuracy: 0.94947
+---
 
 ## Input Features
 
@@ -42,6 +42,8 @@ Balanced Accuracy: 0.94947
 - Smoking and Alcohol
 - Gender
 
+---
+
 ## Technologies Used
 
 - Python
@@ -51,13 +53,38 @@ Balanced Accuracy: 0.94947
 - NumPy
 - Scikit-learn
 - Joblib
+- MySQL
+- MySQL Workbench
+- HTML
+- CSS
+- JavaScript
 
-## Application Features
+---
 
-- Machine Learning prediction  
-- Flask web interface  
-- Real-time health risk classification  
-- User-friendly input form  
+## System Features
+
+- Student health risk prediction using XGBoost
+- Flask web application with a user-friendly interface
+- Real-time prediction results
+- Personalised health recommendations
+- Prediction history stored in MySQL
+- Dashboard for viewing prediction records using MySQL Workbench
+
+---
+
+## Project Structure
+
+Student-Health-Risk-Prediction/
+
+ app.py
+ requirements.txt
+ README.md
+ model/
+ templates/
+ static/
+
+
+---
 
 ## Author
 
